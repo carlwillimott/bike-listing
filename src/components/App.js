@@ -1,4 +1,5 @@
 import React from 'react';
+import {fetchBikes} from '../actions/index';
 import Bike from './Bike';
 
 const dummy = {
@@ -14,6 +15,7 @@ const dummy = {
 
 const App = () => (
 	<div>
+	{fetchBikes()}
 		<Bike
 			id={dummy.id}
 			name={dummy.name}
