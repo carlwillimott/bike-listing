@@ -13,17 +13,41 @@ const dummy = {
 	"class": ["endurance", "race"]
 };
 
-const App = () => (
-	<div>
-	{fetchBikes()}
-		<Bike
-			id={dummy.id}
-			name={dummy.name}
-			description={dummy.description}
-			image={dummy.image}
-			class={dummy.class}
-		/>
-	</div>
-);
+class App extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			bikes: null
+		};
+	}
+
+	render() {
+		if (this.state.bikes) {
+			return <div>{this.displayBikes(this.state.bikes)}</div>
+		}
+		return <div>Loading Bikes...</div>
+	}
+
+	componentDidMount() {
+		let result = fetchBikes();
+		result.subscribe((found) => this.setState({bikes: found.items}));
+	}
+
+	displayBikes(bikes) {
+		return bikes.map((item) => {
+			return (
+				<Bike
+					id={item.id}
+					name={item.name}
+					description={item.description}
+					image={item.image}
+					class={item.class}
+				/>
+			);
+		})
+	}
+
+};
 
 export default App;
