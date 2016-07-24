@@ -17,7 +17,9 @@ class App extends React.Component {
         if (this.state.bikes) {
             return (
                 <div>
-                    <Filter classes={this.state.classes} />
+                    <Filter
+                        classes={this.state.classes}
+                    />
                     {this.displayBikes(this.state.bikes)}
                 </div>
             )
