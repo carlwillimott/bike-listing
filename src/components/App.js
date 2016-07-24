@@ -1,7 +1,7 @@
 import React from 'react';
 import {fetchBikes} from '../actions/index';
-import Bike from './Bike';
-import Filter from './Filter';
+import SortBikes from '../containers/SortBikes';
+import SortedBikeList from '../containers/SortedBikeList';
 
 class App extends React.Component {
 
@@ -17,16 +17,20 @@ class App extends React.Component {
         if (this.state.bikes) {
             return (
                 <div>
-                    <Filter
+                    <SortBikes
                         classes={this.state.classes}
                     />
-                    {this.displayBikes(this.state.bikes)}
+                    <SortedBikeList
+                        bikes={this.state.bikes}
+                    />
                 </div>
             )
         }
         return <div>Loading Bikes...</div>
     }
 
+    // This comes before render in the react lifecycle, which allows us to
+    // run any AJAX requests before displaying the component.
     componentDidMount() {
         let result = fetchBikes();
         result.subscribe((found) => {
@@ -37,20 +41,8 @@ class App extends React.Component {
         });
     }
 
-    displayBikes(bikes) {
-        return bikes.map((item) => {
-            return (
-                <Bike
-                    id={item.id}
-                    name={item.name}
-                    description={item.description}
-                    image={item.image}
-                    class={item.class}
-                />
-            );
-        })
-    }
-
+    // Helper function to get an array of classes which we can pass into the
+    // sort component later.
     getClasses(bikes) {
         let classes = [];
         bikes.map((item) => {

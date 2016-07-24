@@ -1,13 +1,14 @@
 import React from 'react';
 
-class Filter extends React.Component {
+class Sort extends React.Component {
 
     render() {
         return (
             <div>
-                <h2>Filter</h2>
+                <h2>Sort</h2>
                 <p>Select an option from the list to show bikes of this class first.</p>
-                <select>
+                <select
+                    onChange={(event) => this.props.onSortChange(event.target.value)}>
                     {this.getOptions()}
                 </select>
             </div>
@@ -15,9 +16,10 @@ class Filter extends React.Component {
     }
 
     getOptions() {
-        return this.props.classes.map((item) => {
+        return this.props.classes.map((item, i) => {
             return (
                 <option
+                    key={i}
                     value={item}>
                     {item}
                 </option>
@@ -27,8 +29,9 @@ class Filter extends React.Component {
 
 }
 
-Filter.PropTypes = {
-    classes: React.PropTypes.array.isRequired
+Sort.PropTypes = {
+    classes: React.PropTypes.array.isRequired,
+    onSortChange: React.PropTypes.func.isRequired
 };
 
-export default Filter;
+export default Sort;
