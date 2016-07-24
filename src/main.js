@@ -5,7 +5,10 @@ import {Provider} from 'react-redux'
 import App from './components/App';
 import {sortBikes} from './reducers'
 
-const store = createStore(sortBikes);
+let store = createStore(sortBikes);
+
+// Console a list of dispatched actions.
+store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(
     <Provider store={store}>
