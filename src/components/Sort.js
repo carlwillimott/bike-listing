@@ -4,7 +4,7 @@ class Sort extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={"col-md-12"}>
                 <h2>Sort</h2>
                 <p>Select an option from the list to show bikes of this class first.</p>
                 <select
