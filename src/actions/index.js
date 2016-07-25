@@ -19,11 +19,14 @@ export const sortBikes = (sortClass) => {
     }
 };
 
-export const getSortedBikeList = (sortClass, bikes) => {
-    if (sortClass === undefined) {
+// Helper function to handle the order of the bikes.
+export const getSortedBikeList = (state, bikes) => {
+
+    let sort = state.sortClass;
+    if (sort === undefined || sort === 'none') {
         return bikes;
     }
-    // @todo - Need to handle the sort order now.
+
     return bikes;
 
 }

@@ -8,7 +8,13 @@ class Sort extends React.Component {
                 <h2>Sort</h2>
                 <p>Select an option from the list to show bikes of this class first.</p>
                 <select
-                    onChange={(event) => this.props.onSortChange(event.target.value)}>
+                    onChange={(event) => this.props.onSortChange(event.target.value)}
+                    value={this.props.selected}>
+                    <option
+                        key={"none"}
+                        value={"none"}>
+                        {"- Select -"}
+                    </option>
                     {this.getOptions()}
                 </select>
             </div>
@@ -31,7 +37,8 @@ class Sort extends React.Component {
 
 Sort.PropTypes = {
     classes: React.PropTypes.array.isRequired,
-    onSortChange: React.PropTypes.func.isRequired
+    onSortChange: React.PropTypes.func.isRequired,
+    selected: React.PropTypes.string.isRequired
 };
 
 export default Sort;

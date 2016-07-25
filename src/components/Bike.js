@@ -8,13 +8,17 @@ import React from 'react';
                 <h3>{this.props.name}</h3>
                 <p>{this.props.description}</p>
                 <img src={this.props.image.thumb} />
-                <p>{this.displayClasses(this.props.class)}</p>
+                <ul>{this.displayClasses(this.props.class)}</ul>
             </div>
         )
     }
 
     displayClasses(classes) {
-        return classes.toString();
+        return classes.map((item, i) => {
+            return (
+                <li key={i}>{item}</li>
+            )
+        });
     }
 
 };
