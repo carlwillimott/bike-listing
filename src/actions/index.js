@@ -22,8 +22,13 @@ export const sortBikes = (sortClass) => {
 // Helper function to handle the order of the bikes.
 export const getSortedBikeList = (state, bikes) => {
 
+    if (state === undefined) {
+        return bikes;
+    }
+
     let sort = state.sortClass;
-    if (sort === undefined || sort === 'none') {
+
+    if (sort === 'none') {
         return bikes;
     }
 
