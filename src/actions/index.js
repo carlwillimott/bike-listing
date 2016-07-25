@@ -27,6 +27,18 @@ export const getSortedBikeList = (state, bikes) => {
         return bikes;
     }
 
-    return bikes;
+    let target = [];
+    let others = [];
+
+    // Build two arrays and merge them for the sort.
+    bikes.forEach((item) => {
+        if (item.class.indexOf(sort) > -1) {
+            target.push(item);
+        } else {
+            others.push(item);
+        }
+    });
+
+    return target.concat(others);
 
 }
